@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputPlayerNameText;
     [SerializeField] private Transform submitNamePanel;
     [SerializeField] private Transform leaderboardPanel;
+    [SerializeField] private Transform leaderBoardBtn;
     [SerializeField] private Button retryButton;
 
     [Header("LEADR")]
@@ -86,6 +87,11 @@ public class GameManager : MonoBehaviour
     public void ToggleLeaderboard()
     {
         leaderboardPanel.gameObject.SetActive(!leaderboardPanel.gameObject.activeSelf);
+    }
+
+    public void CloseLeaderBoard()
+    {
+        leaderboardPanel.gameObject.SetActive(false);
     }
 
     public async Task GetLeadrBoardAsync()
@@ -202,6 +208,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var obstacle in FindObjectsOfType<Obstacle>())
             Destroy(obstacle.gameObject);
+        leaderBoardBtn.gameObject.SetActive(false);
 
         score = 0f;
         playTime = 0;
@@ -228,6 +235,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        leaderBoardBtn.gameObject.SetActive(true);
 
         UpdateHighScore();
     }

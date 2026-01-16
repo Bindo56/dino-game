@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [DefaultExecutionOrder(-1)]
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform leaderboardPanel;
     [SerializeField] private Transform leaderBoardBtn;
     [SerializeField] private Button retryButton;
+
+    
 
     [Header("LEADR")]
     [SerializeField] private LeadrSettings settings;
@@ -59,12 +62,27 @@ public class GameManager : MonoBehaviour
         // LEADR SDK initialization
         leadrClient = new LeadrClient();
         leadrClient.Initialize(settings);
+
+      
+
+
     }
 
+    private void OnEnable()
+    {
+       
+    }
+
+    private void OnDisable()
+    {
+       
+    }
     private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
+
+       
     }
 
     private void Start()
